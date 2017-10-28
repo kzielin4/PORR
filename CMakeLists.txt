@@ -3,11 +3,11 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp src/derivative.h src/derivative.cpp)
 
 find_package(Boost)
 IF (Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIR})
-    add_executable(untitled ${SOURCE_FILES})
+    add_executable(untitled ${SOURCE_FILES} src/derivative.h src/derivative.cpp)
     target_link_libraries (untitled ${Boost_LIBRARIES})
 endif()
