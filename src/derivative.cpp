@@ -22,7 +22,7 @@ double fun1(double x) {
 }
 
 double fun2(double x) {
-    return (x - 1.5) * (x - 1.5) / x;
+    return (x - 1.5) * (x - 1.5);
 }
 
 double fun3(double x) {

@@ -10,6 +10,7 @@
 #include <list>
 #include <float.h>
 #include "Interval.h"
+#include <tuple>
 
 class Solver {
 
@@ -28,13 +29,24 @@ public:
 public:
     void test() {
         std::list<Interval>::iterator it = intervalList.begin();
-        Interval *nowy = new Interval(1.0, 2.0);
-        addIntervalToList(*nowy);
-        std::cout << "Size: " << intervalList.size() << std::endl;
-        for (int i = 0; i < intervalList.size(); ++i) {
-            std::cout << "Wynik:" << it->countIntervalCrossPoint(&dfun1, &fun1) << std::endl;
-            ++it;
+        double x, result;
+        int i;
+
+        for (i = 0; it != intervalList.end(); ++i) {
+            std::tie(x, result) = it->countIntervalCrossPoint(&dfun2, &fun2);
+            if (result > minValue || (result == -1 && it->getIsDericativeExist())) {
+                ++it;
+                intervalList.pop_front();
+            } else {
+                minValue = result;
+                Interval *nowy = new Interval(it->getSmallesValue(), x);
+                addIntervalToList(*nowy);
+                ++it;
+                intervalList.pop_front();
+            }
+            std::cout << "I: " << i << "   MIN: " << minValue<<std::endl;
         }
+        std::cout << "I: " << i << "   MIN: " << minValue;
     };
 };
 
