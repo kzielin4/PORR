@@ -11,5 +11,10 @@ double fun2(double a);
 double fun3(double a);
 double fun4(double a);
 double fun5(double a);
+double dfun1(double a);
+double dfun2(double a);
+double dfun3(double a);
+double dfun4(double a);
+double dfun5(double a);
 
 #endif //UNTITLED_DERIVATIVE_H

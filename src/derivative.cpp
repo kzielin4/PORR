@@ -17,15 +17,35 @@ value_type derivative(const value_type x, const value_type dx, function_type fun
     return ((fifteen_m1 - six_m2) + m3) / ten_dx1;
 }
 
-double fun1(double a) {
+double fun1(double x) {
+    return (x == 0) ? 0 : sin(x) / x;
+}
+
+double fun2(double x) {
+    return (x - 1.5) * (x - 1.5) / x;
+}
+
+double fun3(double x) {
+    return ((x / 40) * x * x) + 1 - cos(x);
+}
+
+double fun4(double x) {
+    return 5 * (sin(0.2 * x) + cos(0.7 * x));
+}
+
+double fun5(double x) {
+    return sin(cos(x)) * x;
+}
+
+double dfun1(double a) {
     derivative(a, 0.0001,
                [](const double &x) -> double {
-                   return (x==0) ? 0:sin(x)/x;
+                   return (x == 0) ? 0 : sin(x) / x;
                }
     );
 }
 
-double fun2(double a) {
+double dfun2(double a) {
     derivative(a, 0.0001,
                [](const double &x) -> double {
                    return (x - 1.5) * (x - 1.5);
@@ -33,7 +53,7 @@ double fun2(double a) {
     );
 }
 
-double fun3(double a) {
+double dfun3(double a) {
     derivative(a, 0.0001,
                [](const double &x) -> double {
                    return ((x / 40) * x * x) + 1 - cos(x);
@@ -41,7 +61,7 @@ double fun3(double a) {
     );
 }
 
-double fun4(double a) {
+double dfun4(double a) {
     derivative(a, 0.0001,
                [](const double &x) -> double {
                    return 5 * (sin(0.2 * x) + cos(0.7 * x));
@@ -50,7 +70,7 @@ double fun4(double a) {
 }
 
 
-double fun5(double a) {
+double dfun5(double a) {
     derivative(a, 0.0001,
                [](const double &x) -> double {
                    return sin(cos(x)) * x;
