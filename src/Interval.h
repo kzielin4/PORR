@@ -8,6 +8,7 @@
 #include "derivative.h"
 #include <iostream>
 #include <tuple>
+#include <algorithm>
 
 class Interval {
     double a;
@@ -32,7 +33,8 @@ public:
             return  std::make_tuple(-1,-1);
         } else {
             result = (funValA - derivA * a - funValB + derivB * b) / (derivB - derivA);
-            std::cout<<"x: "<<result<<"     y:"<<function(result)<<std::endl;
+            std::cout<<"A: "<<a <<"   B:"<<b<<"   X: "<<result<<"     Y:"<<function(result)<<std::endl;
+            double www = std::max(funValA - derivA * a + derivA*result,funValB - derivB * b + derivB*result);
             return std::make_tuple(result,function(result));
         }
     }
@@ -40,6 +42,11 @@ public:
 public:
     double getSmallesValue() {
         return (b > a) ? a : b;
+    }
+
+public:
+    double getBiggestValue() {
+        return (b > a) ? b : a;
     }
 
 public:

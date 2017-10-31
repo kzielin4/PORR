@@ -30,6 +30,7 @@ public:
     void test() {
         std::list<Interval>::iterator it = intervalList.begin();
         double x, result;
+        double minx = DBL_MAX;
         int i;
 
         for (i = 0; it != intervalList.end(); ++i) {
@@ -39,14 +40,16 @@ public:
                 intervalList.pop_front();
             } else {
                 minValue = result;
-                Interval *nowy = new Interval(it->getSmallesValue(), x);
-                addIntervalToList(*nowy);
+                minx = x;
+                Interval *firstPoint = new Interval(it->getSmallesValue(), x);
+                addIntervalToList(*firstPoint);
+                Interval *secondPoint = new Interval(x,it->getBiggestValue());
+                addIntervalToList(*secondPoint);
                 ++it;
                 intervalList.pop_front();
             }
-            std::cout << "I: " << i << "   MIN: " << minValue<<std::endl;
         }
-        std::cout << "I: " << i << "   MIN: " << minValue;
+        std::cout << "X: " << minx << "   MIN: " << minValue;
     };
 };
 

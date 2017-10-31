@@ -38,7 +38,7 @@ double fun5(double x) {
 }
 
 double dfun1(double a) {
-    derivative(a, 0.0001,
+    derivative(a, 1.0,
                [](const double &x) -> double {
                    return (x == 0) ? 0 : sin(x) / x;
                }
@@ -46,7 +46,7 @@ double dfun1(double a) {
 }
 
 double dfun2(double a) {
-    derivative(a, 0.0001,
+    derivative(a, 1.0,
                [](const double &x) -> double {
                    return (x - 1.5) * (x - 1.5);
                }
@@ -54,7 +54,7 @@ double dfun2(double a) {
 }
 
 double dfun3(double a) {
-    derivative(a, 0.0001,
+    derivative(a, 1.0,
                [](const double &x) -> double {
                    return ((1 / 40) * x * x) + 1 - cos(x);
                }
@@ -62,7 +62,7 @@ double dfun3(double a) {
 }
 
 double dfun4(double a) {
-    derivative(a, 0.0001,
+    derivative(a, 1.0,
                [](const double &x) -> double {
                    return 5 * (sin(0.2 * x) + cos(0.7 * x));
                }
@@ -71,7 +71,7 @@ double dfun4(double a) {
 
 
 double dfun5(double a) {
-    derivative(a, 0.0001,
+    derivative(a, 1.0,
                [](const double &x) -> double {
                    return sin(cos(x)) * x;
                }
