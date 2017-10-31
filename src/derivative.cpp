@@ -26,7 +26,7 @@ double fun2(double x) {
 }
 
 double fun3(double x) {
-    return ((x / 40) * x * x) + 1 - cos(x);
+    return ((1 / 40) * x * x) + 1 - cos(x);
 }
 
 double fun4(double x) {
@@ -56,7 +56,7 @@ double dfun2(double a) {
 double dfun3(double a) {
     derivative(a, 0.0001,
                [](const double &x) -> double {
-                   return ((x / 40) * x * x) + 1 - cos(x);
+                   return ((1 / 40) * x * x) + 1 - cos(x);
                }
     );
 }
@@ -77,4 +77,3 @@ double dfun5(double a) {
                }
     );
 }
-
