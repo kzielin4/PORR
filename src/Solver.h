@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <cstddef>
+#include <cstdlib>
+#include <cmath>
 #include <list>
 #include <float.h>
 #include "Interval.h"
@@ -16,10 +18,23 @@ class Solver {
 
     std::list<Interval> intervalList;
     double minValue;
+    double startA;
+    double startB;
+
+    double (*derivative)(double);
+
+    double (*function)(double);
+
 public:
-    Solver(const Interval &interval) {
+    Solver(const Interval &interval, double (*derivative1)(double), double (*function2)(double)) {
         minValue = DBL_MAX;
         intervalList.push_back(interval);
+        std::list<Interval>::iterator it = intervalList.begin();
+        startA = it->getSmallesValue();
+        startB = it->getBiggestValue();
+        derivative = derivative1;
+        function = function2;
+
     };
 public:
     void addIntervalToList(const Interval &interval) {
@@ -28,22 +43,44 @@ public:
 
 public:
     void test() {
+        Interval *minInterval;
         std::list<Interval>::iterator it = intervalList.begin();
         double x, result;
         double minx = DBL_MAX;
         int i;
 
         for (i = 0; it != intervalList.end(); ++i) {
-            std::tie(x, result) = it->countIntervalCrossPoint(&dfun2, &fun2);
+            std::tie(x, result) = it->countIntervalCrossPoint();
             if (result > minValue || (result == -1 && it->getIsDericativeExist())) {
+                if (intervalList.size() == 1 && std::abs(it->getSmallesValue() - it->getBiggestValue()) > 0.02) {
+                    double minA = minInterval->getSmallesValue(), minB = minInterval->getBiggestValue();
+                    double funA01 = minInterval->getValuedFromArg(minx - 0.01);
+                    double funB01 = minInterval->getValuedFromArg(minx + 0.01);
+                    if ((startA <= minA && startB >= minB) && (funA01 < minValue || funB01 < minValue)) {
+                        std::cout << "Super: \n";
+                        if (funA01 < minValue ) {
+                            minA = x- 0.1;
+
+                        }
+                        if (funB01 < minValue){
+                            minB = x + 0.1;
+
+                        }
+                        Interval *secondPoint = new Interval(minA,
+                                                             minB, derivative,
+                                                             function);
+                        addIntervalToList(*secondPoint);
+                    }
+                }
                 ++it;
                 intervalList.pop_front();
-            } else {
+            } else {//jezeli duzy przedzial a jest ostani element wtedy iteracja od poczatku
                 minValue = result;
                 minx = x;
-                Interval *firstPoint = new Interval(it->getSmallesValue(), x);
+                minInterval = new Interval(it->getSmallesValue(), it->getBiggestValue(), derivative, function);
+                Interval *firstPoint = new Interval(it->getSmallesValue(), x, derivative, function);
                 addIntervalToList(*firstPoint);
-                Interval *secondPoint = new Interval(x,it->getBiggestValue());
+                Interval *secondPoint = new Interval(x, it->getBiggestValue(), derivative, function);
                 addIntervalToList(*secondPoint);
                 ++it;
                 intervalList.pop_front();
