@@ -48,7 +48,7 @@ public:
         double x, result;
         double minx = DBL_MAX;
         int i;
-        int L;
+        int L = it->getL();
         bool isFirsLoop = false;
         double lastCorrectX;
         int counter=0;
@@ -56,7 +56,6 @@ public:
             std::tie(x, result) = it->countIntervalCrossPoint();
             if (result > minValue || (result == -1 && it->getIsDericativeExist())) {
                 if (intervalList.size() == 1 && std::abs(it->getSmallesValue() - it->getBiggestValue()) > 0.02) {
-                    L = it->getL();
                     double minA = minInterval->getSmallesValue(), minB = minInterval->getBiggestValue();
                     double funA01 = minInterval->getValuedFromArg(minx - 0.01);
                     double funB01 = minInterval->getValuedFromArg(minx + 0.01);
@@ -99,7 +98,7 @@ public:
                         }
                         Interval *secondPoint = new Interval(minA,
                                                              minB, derivative,
-                                                             function);
+                                                             function,L);
                         addIntervalToList(*secondPoint);
                     }
                 }
@@ -108,10 +107,10 @@ public:
             } else {//jezeli duzy przedzial a jest ostani element wtedy iteracja od poczatku
                 minValue = result;
                 minx = x;
-                minInterval = new Interval(it->getSmallesValue(), it->getBiggestValue(), derivative, function);
-                Interval *firstPoint = new Interval(it->getSmallesValue(), x, derivative, function);
+                minInterval = new Interval(it->getSmallesValue(), it->getBiggestValue(), derivative, function,L);
+                Interval *firstPoint = new Interval(it->getSmallesValue(), x, derivative, function,L);
                 addIntervalToList(*firstPoint);
-                Interval *secondPoint = new Interval(x, it->getBiggestValue(), derivative, function);
+                Interval *secondPoint = new Interval(x, it->getBiggestValue(), derivative, function,L);
                 addIntervalToList(*secondPoint);
                 ++it;
                 intervalList.pop_front();

@@ -18,12 +18,13 @@ class Interval {
     bool isDericativeExist;
     double (*derivative)(double);
     double (*function)(double);
-    int L=37;
+    int L;
 
 public:
-    Interval(double a, double b, double (*derivative1)(double), double (*function2)(double)) {
+    Interval(double a, double b, double (*derivative1)(double), double (*function2)(double),int L) {
         this->a = a;
         this->b = b;
+        this->L = L;
         derivative = derivative1;
         function = function2;
         funValA = function(a);
@@ -33,8 +34,8 @@ public:
 public:
     std::tuple<double,double> countIntervalCrossPoint() {
             isDericativeExist = true;
-        double derivA = 37;
-        double derivB = 37;
+        double derivA = L;
+        double derivB = L;
         double result;
 //        if (derivA == derivB) {
 //            isDericativeExist = false;
