@@ -48,22 +48,53 @@ public:
         double x, result;
         double minx = DBL_MAX;
         int i;
-
+        int L;
+        bool isFirsLoop = false;
+        double lastCorrectX;
+        int counter=0;
         for (i = 0; it != intervalList.end(); ++i) {
             std::tie(x, result) = it->countIntervalCrossPoint();
             if (result > minValue || (result == -1 && it->getIsDericativeExist())) {
                 if (intervalList.size() == 1 && std::abs(it->getSmallesValue() - it->getBiggestValue()) > 0.02) {
+                    L = it->getL();
                     double minA = minInterval->getSmallesValue(), minB = minInterval->getBiggestValue();
                     double funA01 = minInterval->getValuedFromArg(minx - 0.01);
                     double funB01 = minInterval->getValuedFromArg(minx + 0.01);
                     if ((startA <= minA && startB >= minB) && (funA01 < minValue || funB01 < minValue)) {
                         std::cout << "Super: \n";
+                        if(lastCorrectX == false){
+                            lastCorrectX == true;
+                        }
+                        else{
+                            if(lastCorrectX = x){
+                                ++counter;
+                                if(counter>99){
+                                    std::cout << "X: " << minx << "   MIN: " << minValue;
+                                    return;
+                                }
+                            }
+                            else{
+                                counter=0;
+                            }
+                        }
+                        lastCorrectX=x;
                         if (funA01 < minValue ) {
-                            minA = x- 0.1;
-
+                            //minA = x - 0.1;
                         }
                         if (funB01 < minValue){
-                            minB = x + 0.1;
+                            //minB = x + 0.1;
+
+                        }
+                        if(L > 0){
+                            minA = it->getSmallesValue() - 0.1;
+                            minB = minx + 0.1;
+                        }
+                        else if(L<0){
+                            minB = minx + 0.1;
+                        }
+                        else{
+                            minA = minx - 0.3;
+                            minB = minx + 0.3;
 
                         }
                         Interval *secondPoint = new Interval(minA,

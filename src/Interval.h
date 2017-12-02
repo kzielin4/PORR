@@ -18,6 +18,7 @@ class Interval {
     bool isDericativeExist;
     double (*derivative)(double);
     double (*function)(double);
+    int L=37;
 
 public:
     Interval(double a, double b, double (*derivative1)(double), double (*function2)(double)) {
@@ -73,6 +74,14 @@ public:
     bool getIsDericativeExist() {
         return isDericativeExist;
     }
+    void setL(int L) {
+        Interval::L = L;
+    }
+
+    int getL() const {
+        return L;
+    }
+
 };
 
 #endif //UNTITLED_INTERVAL_H
