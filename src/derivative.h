@@ -16,5 +16,6 @@ double dfun2(double a);
 double dfun3(double a);
 double dfun4(double a);
 double dfun5(double a);
+double getL(double (*derivative)(double),double a,double b);
 
 #endif //UNTITLED_DERIVATIVE_H

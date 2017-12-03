@@ -77,3 +77,16 @@ double dfun5(double a) {
                }
     );
 }
+
+double getL(double (*derivative)(double),double a,double b){
+    double dMax = -9999999;
+    double valueofdMax=-999999999;
+    for(double x = a;x<=b;x=x+0.01) {
+        double val = derivative(x);
+        if (std::abs(val) > dMax) {
+            valueofdMax = val;
+            dMax = std::abs(val);
+        }
+    }
+    return valueofdMax;
+}

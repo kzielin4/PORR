@@ -82,7 +82,7 @@ public:
                             minB = minx +0.2;
                         }
                         else if(L<0){
-                            minB = it->getBiggestValue() + 0.01;
+                            minB = minInterval->getBiggestValue() + 0.2;
                             minA = minx - 0.1;
                         }
                         else{
