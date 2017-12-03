@@ -9,13 +9,13 @@ int main() {
     using boost::multiprecision::cpp_dec_float_50;
     int startTime = clock();
 
-    int intervalA = -10;
-    int intervalB = 15;
+    int intervalA = 0;
+    int intervalB = 13;
 
     int L = ceil(dfun4(intervalB));
     std::cout << "L: " << L << std::endl;
-    Interval *nowy = new Interval(intervalA, intervalB, &dfun4, &fun4, 3.04);
-    Solver *solver = new Solver(*nowy, &dfun4, &fun4);
+    Interval *nowy = new Interval(intervalA, intervalB, &dfun1, &fun1, 0.4361815256016513);
+    Solver *solver = new Solver(*nowy, &dfun1, &fun1);
     solver->test();
 
     int duration = clock() - startTime;

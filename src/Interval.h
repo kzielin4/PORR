@@ -18,10 +18,10 @@ class Interval {
     bool isDericativeExist;
     double (*derivative)(double);
     double (*function)(double);
-    int L;
+    double L;
 
 public:
-    Interval(double a, double b, double (*derivative1)(double), double (*function2)(double),int L) {
+    Interval(double a, double b, double (*derivative1)(double), double (*function2)(double),double L) {
         this->a = a;
         this->b = b;
         this->L = L;
@@ -34,21 +34,14 @@ public:
 public:
     std::tuple<double,double> countIntervalCrossPoint() {
             isDericativeExist = true;
-        double derivA = L;
-        double derivB = L;
         double result;
-//        if (derivA == derivB) {
-//            isDericativeExist = false;
-//            return std::make_tuple(-1, -1);
-        //} else
-            result = (funValA + derivA * a - funValB + derivB * b) / (derivB + derivA);
+            result = (funValA + L * a - funValB + L * b) / ( 2* L);
             std::cout << "A: " << a << "   B:" << b << "   X: " << result << "     Y:" << function(result) << std::endl;
-//            if (result < a || result> b) {
-//                isDericativeExist = false;
-//                return std::make_tuple(-1, -1);
-//            }
             return std::make_tuple(result, function(result));
-       // }
+
+    }
+    double getH(double x){
+        return std::max(funValA - L*(x-a),funValB - L*(b-x));
     }
 
 public:
@@ -75,11 +68,11 @@ public:
     bool getIsDericativeExist() {
         return isDericativeExist;
     }
-    void setL(int L) {
+    void setL(double L) {
         Interval::L = L;
     }
 
-    int getL() const {
+    double getL() const {
         return L;
     }
 

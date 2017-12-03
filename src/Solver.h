@@ -48,14 +48,14 @@ public:
         double x, result;
         double minx = DBL_MAX;
         int i;
-        int L = it->getL();
+        double L = it->getL();
         bool isFirsLoop = false;
         double lastCorrectX;
         int counter=0;
         for (i = 0; it != intervalList.end(); ++i) {
             std::tie(x, result) = it->countIntervalCrossPoint();
-            if (result >= minValue || (result == -1 && it->getIsDericativeExist())) {
-                if (intervalList.size() == 1 && std::abs(it->getSmallesValue() - it->getBiggestValue()) > 0.02) {
+            if (result >= minValue) {
+                if (intervalList.size() == 1 && std::abs(minInterval->getSmallesValue() - minInterval->getBiggestValue()) > 0.02) {
                     double minA = minInterval->getSmallesValue(), minB = minInterval->getBiggestValue();
                     double funA01 = minInterval->getValuedFromArg(minx - 0.01);
                     double funB01 = minInterval->getValuedFromArg(minx + 0.01);
@@ -77,25 +77,26 @@ public:
                             }
                         }
                         lastCorrectX=x;
-                        if (funA01 < minValue ) {
-                            //minA = x - 0.1;
-                        }
-                        if (funB01 < minValue){
-                            //minB = x + 0.1;
-
-                        }
                         if(L > 0){
-                            minA = it->getSmallesValue() - 0.1;
-                            minB = minx + 0.1;
+                            minA = minInterval ->getSmallesValue() - 0.2;
+                            minB = minx +0.2;
                         }
                         else if(L<0){
-                            minB = minx + 0.1;
+                            minB = it->getBiggestValue() + 0.01;
+                            minA = minx - 0.1;
                         }
                         else{
                             minA = minx - 0.3;
                             minB = minx + 0.3;
 
                         }
+                        if(startA > minA){
+                            minA = startA;
+                        }
+                        if(startB < minB){
+                            minB = startB;
+                        }
+
                         Interval *secondPoint = new Interval(minA,
                                                              minB, derivative,
                                                              function,L);
