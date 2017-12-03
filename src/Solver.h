@@ -78,12 +78,12 @@ public:
                         }
                         lastCorrectX=x;
                         if(L > 0){
-                            minA = minInterval ->getSmallesValue() - 0.2;
-                            minB = minx +0.2;
+                            minA = minx-1;
+                            minB = minx;
                         }
                         else if(L<0){
-                            minB = minInterval->getBiggestValue() + 0.2;
-                            minA = minx - 0.1;
+                            minB = minx + 1;
+                            minA = minx;
                         }
                         else{
                             minA = minx - 0.3;

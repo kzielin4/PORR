@@ -36,6 +36,12 @@ public:
             isDericativeExist = true;
         double result;
             result = (funValA + L * a - funValB + L * b) / ( 2* L);
+            if(result<a){
+                result = a+0.01;
+            }
+            else if(result>b){
+                result = b -0.01;
+            }
             std::cout << "A: " << a << "   B:" << b << "   X: " << result << "     Y:" << function(result) << std::endl;
             return std::make_tuple(result, function(result));
 

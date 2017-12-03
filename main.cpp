@@ -9,11 +9,11 @@ int main() {
     using boost::multiprecision::cpp_dec_float_50;
     int startTime = clock();
 
-    int intervalA = -10;
-    int intervalB = 15;
-    double (*derivative)(double)= &dfun4;
-    double (*function)(double)=&fun4;
-    double L = 0.25162;
+    int intervalA = -12.9;
+    int intervalB = 13;
+    double (*derivative)(double)= &dfun1;
+    double (*function)(double)=&fun1;
+    double L = 0.5;
     std::cout << "L: " << L << std::endl;
     Interval *nowy = new Interval(intervalA, intervalB, derivative, function, L);
     Solver *solver = new Solver(*nowy, derivative, function);
