@@ -10,3 +10,10 @@ int intervalB = 20;
 double (*derivative)(double)= &dfun3;
 double (*function)(double)=&fun3;
 double L = 2;
+#####4#####
+int intervalA = -10;
+int intervalB = 15;
+double (*derivative)(double)= &dfun4;
+double (*function)(double)=&fun4;
+double L = 1;
+
