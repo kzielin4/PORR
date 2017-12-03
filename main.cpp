@@ -7,8 +7,18 @@
 int main() {
     using boost::math::constants::pi;
     using boost::multiprecision::cpp_dec_float_50;
-    Interval *nowy = new Interval(-5.0, 20.0,&dfun2, &fun2,37);
-    Solver *solver = new Solver(*nowy, &dfun2, &fun2);
+    int startTime = clock();
+
+    int intervalA = -10;
+    int intervalB = 15;
+
+    int L = ceil(dfun4(intervalB));
+    std::cout << "L: " << L << std::endl;
+    Interval *nowy = new Interval(intervalA, intervalB, &dfun4, &fun4, 1);
+    Solver *solver = new Solver(*nowy, &dfun4, &fun4);
     solver->test();
+
+    int duration = clock() - startTime;
+    std::cout << "Czas trwania: " << duration << "[ms] " << std::endl;
     return 0;
 }

@@ -68,7 +68,7 @@ public:
                             if(lastCorrectX = x){
                                 ++counter;
                                 if(counter>99){
-                                    std::cout << "X: " << minx << "   MIN: " << minValue;
+                                    std::cout << "minX: " << minx << "   MIN: " << minValue << std::endl;
                                     return;
                                 }
                             }
@@ -116,7 +116,7 @@ public:
                 intervalList.pop_front();
             }
         }
-        std::cout << "X: " << minx << "   MIN: " << minValue;
+        std::cout << "minX: " << minx << "   MIN: " << minValue << std::endl;
     };
 };
 
