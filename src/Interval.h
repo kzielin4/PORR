@@ -42,7 +42,7 @@ public:
             else if(result>b){
                 result = b -0.01;
             }
-            std::cout << "A: " << a << "   B:" << b << "   X: " << result << "     Y:" << function(result) << std::endl;
+            //std::cout << "A: " << a << "   B:" << b << "   X: " << result << "     Y:" << function(result) << std::endl;
             return std::make_tuple(result, function(result));
 
     }

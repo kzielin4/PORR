@@ -22,3 +22,9 @@ double L = 1.75;
     double (*derivative)(double)= &dfun5;
     double (*function)(double)=&fun5;
     double L = -1.02;
+###1#####
+    int intervalA = -12.9;
+    int intervalB = 13;
+    double (*derivative)(double)= &dfun1;
+    double (*function)(double)=&fun1;
+    double L = 0.496;
