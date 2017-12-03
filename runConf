@@ -1,0 +1,6 @@
+#####2#####
+int intervalA = -5;
+int intervalB = 20;
+double (*derivative)(double)= &dfun2;
+double (*function)(double)=&fun2;
+double L = 20;
