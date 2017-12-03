@@ -54,7 +54,7 @@ public:
         int counter=0;
         for (i = 0; it != intervalList.end(); ++i) {
             std::tie(x, result) = it->countIntervalCrossPoint();
-            if (result > minValue || (result == -1 && it->getIsDericativeExist())) {
+            if (result >= minValue || (result == -1 && it->getIsDericativeExist())) {
                 if (intervalList.size() == 1 && std::abs(it->getSmallesValue() - it->getBiggestValue()) > 0.02) {
                     double minA = minInterval->getSmallesValue(), minB = minInterval->getBiggestValue();
                     double funA01 = minInterval->getValuedFromArg(minx - 0.01);

@@ -14,7 +14,7 @@ int main() {
 
     int L = ceil(dfun4(intervalB));
     std::cout << "L: " << L << std::endl;
-    Interval *nowy = new Interval(intervalA, intervalB, &dfun4, &fun4, 1);
+    Interval *nowy = new Interval(intervalA, intervalB, &dfun4, &fun4, 3.04);
     Solver *solver = new Solver(*nowy, &dfun4, &fun4);
     solver->test();
 
