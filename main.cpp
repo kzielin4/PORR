@@ -9,11 +9,11 @@ int main() {
     using boost::multiprecision::cpp_dec_float_50;
     int startTime = clock();
 
-    int intervalA = -12;
+    int intervalA = -20;
     int intervalB = 20;
-    double (*derivative)(double)= &dfun5;
-    double (*function)(double)=&fun5;
-    double L = -1.02;
+    double (*derivative)(double)= &dfun3;
+    double (*function)(double)=&fun3;
+    double L = 100;
     std::cout << "---------------------------" << std::endl;
     std::cout << "Data " << std::endl;
     std::cout << "Min x: " << intervalA << std::endl;
