@@ -11,6 +11,7 @@
 #include <algorithm>
 
 class Interval {
+public:
     double a;
     double b;
     double funValA;
@@ -31,6 +32,11 @@ public:
         funValB = function(b);
     }
 
+    Interval(double a, double b) {
+        this->a = a;
+        this->b = b;
+    }
+
 public:
     std::tuple<double,double,double> countIntervalCrossPoint() {
             isDericativeExist = true;
@@ -44,8 +50,9 @@ public:
             else if(result>b){
                 result = b -0.01;
             }
+            double resultVal = function(result);
             std::cout << "A: " << a << "   B:" << b << "   X: " << result << "     Y:" << function(result) << std::endl;
-            return std::make_tuple(result, function(result),val);
+            return std::make_tuple(result, resultVal ,val);
 
     }
     double getH(double x){
